@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+
+import os
+import shutil
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+CACHE_DIR = 'weights'
+
+# Clean up any previous weights in the cache directory
+if os.path.exists(CACHE_DIR):
+    shutil.rmtree(CACHE_DIR)
+
+# Create the cache directory
+os.makedirs(CACHE_DIR)
+
+# Model and tokenizer details
+MODEL_ID = "TheBloke/GOAT-70B-Storytelling-GGUF"
+FILENAME = "goat-70b-storytelling.Q5_K_M.gguf"
+
+# Load the model and tokenizer from the Hugging Face model hub with the GGUF file
+model = AutoModelForCausalLM.from_pretrained(MODEL_ID, gguf_file=FILENAME, cache_dir=CACHE_DIR)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, gguf_file=FILENAME, cache_dir=CACHE_DIR)
+
+# Now the model and tokenizer are ready for use
