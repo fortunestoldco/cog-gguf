@@ -15,8 +15,5 @@ jobs:
     - name: Install cog
       run: sh <(curl -fsSL https://raw.githubusercontent.com/fortunestoldco/cog-gguf/refs/heads/master/autocog.sh?token=GHSAT0AAAAAAC6QCSZT32APVG4EHMGVMDAGZ5VDB3A)
 
-    - name: Initialize cog
-      run: cog init
-
     - name: Run script to download weights
       run: cog run script/download_weights
