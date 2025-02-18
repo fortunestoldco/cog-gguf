@@ -1,0 +1,22 @@
+name: Build Model
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install cog
+      run: sh <(curl -fsSL https://cog.run/install.sh)
+
+    - name: Initialize cog
+      run: cog init
+
+    - name: Run script to download weights
+      run: cog run script/download_weights
